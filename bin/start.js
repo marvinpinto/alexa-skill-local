@@ -85,6 +85,15 @@ if (args.inspect_brk) {
 
 const serverArgs = [filePath, port];
 
+httpsServer.on('listening', async () => {
+    console.log(colors.yellow('Update your Alexa Skill Endpoint manually.\n'))
+    const url = await ngrokInit(port);
+    console.log(colors.yellow('-----------------------------------------------------------------------------------------'));
+    console.log(colors.yellow('| Enter this url as HTTPS endpoint in your Alexa console -->'), colors.cyan(url), colors.yellow(' |'));
+    console.log(colors.yellow('-----------------------------------------------------------------------------------------\n'));
+    initMockLambdaServer();
+});
+
 httpsServer.on('access-token', async (accessToken) => {
     try {
         const config = require(path.resolve(args.config));

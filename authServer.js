@@ -19,8 +19,6 @@ app.get('/oauth2/callback', (req, res) => {
 const httpServer = http.createServer(app);
 
 module.exports = function intiAuthServer() {
-    httpServer.listen(3001, () => {
-        console.log('Open in your browser and login with Amazon ==> http://localhost:3001')
-    });
+    httpServer.listen(3001);
     return httpServer;
 }
